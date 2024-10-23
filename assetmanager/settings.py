@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-opar+wdy#=y-xm_dg!lpn5a6z#)x2nk777ft!@p_b^+4@lb#nw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
