@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ
+import environ # type: ignore
 env = environ.Env()
 environ.Env.read_env(env_file=BASE_DIR / ".env")
 
