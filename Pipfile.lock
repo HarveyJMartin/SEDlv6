@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a37a501b4799524860a13afd7d69b25d493affb3797f717f81dfbdb95b747695"
+            "sha256": "c6b55b3d71493f03e9f8ea96afadd55d3cb47be4db08fa9d315cec0e84ba0917"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,10 +44,10 @@
         },
         "dj-database-url": {
             "hashes": [
-                "sha256:3e792567b0aa9a4884860af05fe2aa4968071ad351e033b6db632f97ac6db9de",
-                "sha256:9f9b05058ddf888f1e6f840048b8d705ff9395e3b52a07165daa3d8b9360551b"
+                "sha256:ae52e8e634186b57e5a45e445da5dc407a819c2ceed8a53d1fac004cc5288787",
+                "sha256:bb0d414ba0ac5cd62773ec7f86f8cc378a9dbb00a80884c2fc08cc570452521e"
             ],
-            "version": "==2.2.0"
+            "version": "==2.3.0"
         },
         "django": {
             "hashes": [
@@ -58,6 +58,15 @@
             "markers": "python_version >= '3.10'",
             "version": "==5.1.2"
         },
+        "django-environ": {
+            "hashes": [
+                "sha256:0ff95ab4344bfeff693836aa978e6840abef2e2f1145adff7735892711590c05",
+                "sha256:f32a87aa0899894c27d4e1776fa6b477e8164ed7f6b3e410a62a6d72caaf64be"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.6' and python_version < '4'",
+            "version": "==0.11.2"
+        },
         "django-heroku": {
             "hashes": [
                 "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
@@ -65,6 +74,12 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
+        },
+        "django.db": {
+            "hashes": [
+                "sha256:8639b6f78f04f34294cb465b308992a84297df41033519efd85b3a6b186b5296"
+            ],
+            "version": "==0.0.7"
         },
         "filelock": {
             "hashes": [
@@ -200,13 +215,21 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.9.10"
         },
+        "pymysql": {
+            "hashes": [
+                "sha256:4de15da4c61dc132f4fb9ab763063e693d521a80fd0e87943b9a453dd4c19d6c",
+                "sha256:e127611aaf2b417403c60bf4dc570124aeb4a57f5f37b8e95ae399a42f904cd0"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==1.1.1"
+        },
         "setuptools": {
             "hashes": [
-                "sha256:753bb6ebf1f465a1912e19ed1d41f403a79173a9acf66a42e7e6aec45c3c16ec",
-                "sha256:a7fcb66f68b4d9e8e66b42f9876150a3371558f98fa32222ffaa5bced76406f8"
+                "sha256:f2504966861356aa38616760c0f66568e535562374995367b4e69c7143cf6bcd",
+                "sha256:fba5dd4d766e97be1b1681d98712680ae8f2f26d7881245f2ce9e40714f1a686"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==75.2.0"
+            "version": "==75.3.0"
         },
         "sqlparse": {
             "hashes": [
