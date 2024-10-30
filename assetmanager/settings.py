@@ -80,7 +80,7 @@ USE_SQLITE = env.bool("USE_SQLITE", default=False)
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-print("USE_SQLITE:", USE_SQLITE) 
+
 if USE_SQLITE:
     # Use in-memory SQLite database for CI environment
     DATABASES = {
