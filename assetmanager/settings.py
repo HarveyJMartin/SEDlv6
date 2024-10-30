@@ -73,12 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'assetmanager.wsgi.application'
 
-CI_ENV = env.bool("CI", default=False)
+USE_SQLITE = env.bool("USE_SQLITE", default=False)
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if CI_ENV:
+if USE_SQLITE:
     # Use in-memory SQLite database for CI environment
     DATABASES = {
         'default': {

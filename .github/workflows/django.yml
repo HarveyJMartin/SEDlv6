@@ -27,6 +27,6 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       env:
-        CI: true
+        USE_SQLITE: true
       run: |
         python manage.py test
