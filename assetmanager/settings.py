@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #Custom Apps
     'users', # User login / out
     'devices',# Device management
+    'crispy_bootstrap5',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
