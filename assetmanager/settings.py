@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Custom Apps
-    'users', # User login/ out
+    'users', # User login / out
     'devices',# Device management
 ]
 
