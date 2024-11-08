@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Custom Apps
-    'users', # User login / out
+    'main', # User login / out
     'devices',# Device management
     'crispy_bootstrap5',
     'crispy_forms',
