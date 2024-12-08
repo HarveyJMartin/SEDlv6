@@ -20,6 +20,7 @@ virtualenv = "==20.27.0"
 whitenoise = "==6.7.0"
 django-environ = "*"
 "django.db" = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 
