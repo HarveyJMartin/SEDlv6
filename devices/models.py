@@ -21,4 +21,4 @@ class Device(models.Model):
     model = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.manufacturer} {self.model} ({self.device_type})"
+        return f"{self.manufacturer} {self.model} ({self.device_type}) ({self.operating_system})"
