@@ -1,6 +1,59 @@
 {% extends 'main/base.html' %}
-{% block title %}Login{% endblock %}
+{% block title %}Device List{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>DEVICE LIST</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Device List</h1>
+    
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Device Type</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Operating System</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in page_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ device.get_device_type_display }}</td>
+                <td>{{ device.manufacturer }}</td>
+                <td>{{ device.model }}</td>
+                <td>{{ device.get_operating_system_display }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No devices found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
 {% endblock %}
