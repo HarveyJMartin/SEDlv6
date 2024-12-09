@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block title %}Delete Device{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-danger">Confirm Deletion</h1>
+    <p>Are you sure you want to delete the device: <strong>{{ device.device_type }} - {{ device.model }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'devices' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

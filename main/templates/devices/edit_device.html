@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% block title %}Edit Device{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Edit Device</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'devices' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

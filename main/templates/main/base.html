@@ -20,6 +20,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/create-post">Post</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'devices' %}">
+                            {% if user.is_staff %}Device List{% else %}My Devices{% endif %}
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             <div>
