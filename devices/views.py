@@ -14,18 +14,10 @@ def is_staff_user(user):
 @login_required
 def device_view(request):
     if request.user.is_staff:
-            from django.db import connection
             devices = Device.objects.all()
             return render(request, 'devices/device_list.html', {'devices': devices})
     else:
         return render(request, 'devices/my_devices.html')  # Path relative to the templates folder
-
-
-# # @user_passes_test(is_staff_user)
-# # @login_required
-# def device_list_view(request):
-
-
 
 @user_passes_test(is_staff_user)
 @login_required
