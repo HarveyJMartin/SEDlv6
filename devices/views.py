@@ -37,3 +37,42 @@ def add_device_view(request):
         print("Rendering empty form")
 
     return render(request, 'devices/add_device.html', {'form': form})
+
+@user_passes_test(is_staff_user)
+@login_required
+def edit_device_view(request, pk):
+    try:
+        device = Device.objects.get(pk=pk)
+    except Device.DoesNotExist:
+        logger.error(f"Device with id {pk} does not exist.")
+        return redirect('devices')
+
+    if request.method == 'POST':
+        form = DeviceForm(request.POST, instance=device)
+        if form.is_valid():
+            form.save()
+            logger.info(f"Device with id {pk} updated successfully.")
+            return redirect('devices')
+        else:
+            logger.warning(f"Form is invalid for device id {pk}: {form.errors}")
+    else:
+        form = DeviceForm(instance=device)
+
+    return render(request, 'devices/edit_device.html', {'form': form, 'device': device})
+
+@user_passes_test(is_staff_user)
+@login_required
+def delete_device_view(request, pk):
+    try:
+        device = Device.objects.get(pk=pk)
+    except Device.DoesNotExist:
+        logger.error(f"Device with id {pk} does not exist.")
+        return redirect('devices')
+
+    if request.method == 'POST':
+        device.delete()
+        logger.info(f"Device with id {pk} deleted successfully.")
+        return redirect('devices')
+
+    return render(request, 'devices/confirm_delete.html', {'device': device})
+
