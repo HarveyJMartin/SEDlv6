@@ -13,11 +13,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for field, value in proposed_changes.items %}
+            {% for change in changes %}
             <tr>
-                <td>{{ field }}</td>
-                <td>{{ current_values[field] }}</td>
-                <td>{{ value }}</td>
+                <td>{{ change.field }}</td>
+                <td>{{ change.current_value }}</td>
+                <td>{{ change.proposed_value }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -25,7 +25,7 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-success">Approve Changes</button>
-        <a href="{% url 'assignments' %}" class="btn btn-secondary">Cancel</a>
+        <a href="{% url 'all_assignments' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 {% endblock %}

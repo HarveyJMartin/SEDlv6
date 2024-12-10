@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from devices.models import Device
+from django.core.exceptions import PermissionDenied
 
 
 class Assignment(models.Model):
@@ -52,23 +53,36 @@ class Assignment(models.Model):
         self.save()
 
     def approve_changes(self, user):
-        """Applies the proposed changes if the user is a superuser."""
-        if not user.is_superuser:
-            raise PermissionError("Only superusers can approve changes.")
-        if self.pending_changes:
+        """
+        Approves changes or deletion requests. Only staff users can perform this action.
+        """
+        if not user.is_staff:
+            raise PermissionDenied("Only staff members can approve changes.")
+
+        if self.status == "deletion_requested":
+            # Approve the deletion: Delete the assignment
+            self.delete()
+        elif self.pending_changes:
+            # Approve the proposed changes: Apply them
             for field, value in self.pending_changes.items():
                 setattr(self, field, value)
             self.pending_changes = None
-        self.reason_for_change = None
-        self.save()
+            self.reason_for_change = None
+            self.status = "assigned"  # Reset status back to assigned
+            self.save()
+
 
     def reject_changes(self, user):
-        """Rejects proposed changes if the user is a superuser."""
-        if not user.is_superuser:
-            raise PermissionError("Only superusers can reject changes.")
+        """
+        Rejects changes or deletion requests. Only staff users can perform this action.
+        """
+        if not user.is_staff:
+            raise PermissionDenied("Only staff members can reject changes.")
+
+        if self.status == "deletion_requested":
+            # Reject the deletion: Reset the status back to assigned
+            self.status = "assigned"
         self.pending_changes = None
         self.reason_for_change = None
         self.save()
 
-    def __str__(self):
-        return f"{self.device_type} assigned to {self.user} on {self.assigned_date}"

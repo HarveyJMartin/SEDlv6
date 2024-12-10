@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% block title %}Requested Changes{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Requested Changes</h1>
+    <h2>Edit Requests</h2>
+    {% if edit_requests %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Proposed Changes</th>
+                    <th>Reason</th>
+                    <th>User</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in edit_requests %}
+                <tr>
+                    <td>{{ request.device_type }}</td>
+                    <td>{{ request.pending_changes }}</td>
+                    <td>{{ request.reason_for_change }}</td>
+                    <td>{{ request.edited_by }}</td>
+                    <td>
+                        <a href="{% url 'approve_changes' request.id %}" class="btn btn-success btn-sm">Approve</a>
+                        <a href="{% url 'reject_changes' request.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No edit requests at the moment.</p>
+    {% endif %}
+
+    <h2>Delete Requests</h2>
+    {% if delete_requests %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Reason</th>
+                    <th>User</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in delete_requests %}
+                <tr>
+                    <td>{{ request.device_type }}</td>
+                    <td>{{ request.reason_for_change }}</td>
+                    <td>{{ request.edited_by }}</td>
+                    <td>
+                        <a href="{% url 'approve_changes' request.id %}" class="btn btn-success btn-sm">Approve</a>
+                        <a href="{% url 'reject_changes' request.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No delete requests at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
