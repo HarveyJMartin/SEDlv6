@@ -3,13 +3,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import DeviceForm
 from devices.models import Device
+from django.core.exceptions import PermissionDenied
 
 import logging
 
 logger = logging.getLogger(__name__)
 
 def is_staff_user(user):
-    return user.is_staff
+    if not user.is_staff:
+        raise PermissionDenied  # Raises a 403 Forbidden response
+    return True
 
 @login_required
 def device_view(request):
