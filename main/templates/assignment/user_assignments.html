@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title %}My Assignments{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">My Assignments</h1>
+    {% if assignments %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Device Type</th>
+                    <th>Model</th>
+                    <th>Status</th>
+                    <th>Assigned Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.device_type.device_type }}</td>
+                    <td>{{ assignment.device_type.model }}</td>
+                    <td>{{ assignment.status }}</td>
+                    <td>{{ assignment.assigned_date|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'propose_edit' assignment.id %}" class="btn btn-sm btn-primary">Propose Edit</a>
+                        <a href="{% url 'request_deletion' assignment.id %}" class="btn btn-sm btn-danger">Request Deletion</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You currently have no assignments.</p>
+    {% endif %}
+</div>
+{% endblock %}

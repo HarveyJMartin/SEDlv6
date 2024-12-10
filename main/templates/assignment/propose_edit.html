@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% block title %}Propose Edit{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Propose Edit</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="form-group">
+            <label for="reason">Reason for Change</label>
+            <textarea name="reason" id="reason" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Proposal</button>
+        <a href="{% url 'assignments' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "devices",  # Device management
     "crispy_bootstrap5",
     "crispy_forms",
+    "assignment",  # Include the assignments app
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
