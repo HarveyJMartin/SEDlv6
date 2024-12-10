@@ -22,6 +22,8 @@ urlpatterns = [
         views.reject_changes,
         name="reject_changes",
     ),
-    path('<int:assignment_id>/delete/', views.delete_assignment, name='delete_assignment'),
-    path('<int:assignment_id>/edit/', views.edit_assignment, name='edit_assignment'),
+    path(
+        "<int:assignment_id>/delete/", views.delete_assignment, name="delete_assignment"
+    ),
+    path("<int:assignment_id>/edit/", views.edit_assignment, name="edit_assignment"),
 ]

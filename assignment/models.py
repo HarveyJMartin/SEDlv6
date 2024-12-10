@@ -71,7 +71,6 @@ class Assignment(models.Model):
             self.status = "assigned"  # Reset status back to assigned
             self.save()
 
-
     def reject_changes(self, user):
         """
         Rejects changes or deletion requests. Only staff users can perform this action.
@@ -85,4 +84,3 @@ class Assignment(models.Model):
         self.pending_changes = None
         self.reason_for_change = None
         self.save()
-
