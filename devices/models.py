@@ -1,18 +1,19 @@
 from django.db import models
 
+
 class Device(models.Model):
     DEVICE_TYPE_CHOICES = [
-        ('laptop', 'Laptop'),
-        ('mobile', 'Mobile'),
-        ('desktop', 'Desktop'),
-        ('tablet', 'Tablet'),
+        ("laptop", "Laptop"),
+        ("mobile", "Mobile"),
+        ("desktop", "Desktop"),
+        ("tablet", "Tablet"),
     ]
     OPERATING_SYSTEM_CHOICES = [
-        ('windows_11', 'Windows 11'),
-        ('windows_10', 'Windows 10'),
-        ('macos', 'macOS'),
-        ('ios', 'iOS'),
-        ('linux', 'Linux'),
+        ("windows_11", "Windows 11"),
+        ("windows_10", "Windows 10"),
+        ("macos", "macOS"),
+        ("ios", "iOS"),
+        ("linux", "Linux"),
     ]
 
     device_type = models.CharField(max_length=20, choices=DEVICE_TYPE_CHOICES)

@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block title %}Request Deletion{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-danger">Request Deletion</h1>
+    <p>Are you sure you want to request deletion of the assignment for: <strong>{{ assignment.device_type.device_type }} - {{ assignment.device_type.model }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="reason">Reason for Deletion</label>
+            <textarea name="reason" id="reason" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Request Deletion</button>
+        <a href="{% url 'assignments' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
