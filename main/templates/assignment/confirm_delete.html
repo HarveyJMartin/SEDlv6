@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block title %}Delete Assignment{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-danger">Confirm Deletion</h1>
+    <p>Are you sure you want to delete the assignment for <strong>{{ assignment.device_type }}</strong> assigned to <strong>{{ assignment.user }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'all_assignments' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
