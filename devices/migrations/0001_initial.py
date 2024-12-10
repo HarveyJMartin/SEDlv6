@@ -7,18 +7,48 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Device',
+            name="Device",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('device_type', models.CharField(choices=[('laptop', 'Laptop'), ('mobile', 'Mobile'), ('desktop', 'Desktop'), ('tablet', 'Tablet')], max_length=20)),
-                ('manufacturer', models.CharField(max_length=50)),
-                ('operating_system', models.CharField(choices=[('windows_11', 'Windows 11'), ('windows_10', 'Windows 10'), ('macos', 'macOS'), ('ios', 'iOS'), ('linux', 'Linux')], max_length=20)),
-                ('model', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "device_type",
+                    models.CharField(
+                        choices=[
+                            ("laptop", "Laptop"),
+                            ("mobile", "Mobile"),
+                            ("desktop", "Desktop"),
+                            ("tablet", "Tablet"),
+                        ],
+                        max_length=20,
+                    ),
+                ),
+                ("manufacturer", models.CharField(max_length=50)),
+                (
+                    "operating_system",
+                    models.CharField(
+                        choices=[
+                            ("windows_11", "Windows 11"),
+                            ("windows_10", "Windows 10"),
+                            ("macos", "macOS"),
+                            ("ios", "iOS"),
+                            ("linux", "Linux"),
+                        ],
+                        max_length=20,
+                    ),
+                ),
+                ("model", models.CharField(max_length=100)),
             ],
         ),
     ]

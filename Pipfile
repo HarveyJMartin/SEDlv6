@@ -21,6 +21,7 @@ whitenoise = "==6.7.0"
 django-environ = "*"
 "django.db" = "*"
 crispy-bootstrap5 = "*"
+black = "*"
 
 [dev-packages]
 
