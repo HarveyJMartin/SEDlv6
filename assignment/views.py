@@ -89,24 +89,26 @@ def user_assignments(request):
 def propose_edit(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
 
-    # Check for any pending request
-    if assignment.pending_changes or assignment.status == "deletion_requested":
+    if assignment.pending_changes:
         messages.error(
             request,
-            "This assignment already has a pending request. Please wait for it to be resolved.",
+            "This assignment already has pending changes. Please wait for the current request to be resolved.",
         )
-        return redirect("assignments")  # Redirect to My Assignments page
+        return redirect("assignments")
 
     if request.method == "POST":
-        form = AssignmentEditForm(request.POST, instance=assignment)
+        form = AssignmentEditForm(request.POST)
         if form.is_valid():
-            changes = form.cleaned_data
+            # Collect the proposed changes without saving them to the model
+            changes = {field: value for field, value in form.cleaned_data.items()}
             reason = request.POST.get("reason")
             assignment.propose_edit(changes, request.user, reason)
             messages.success(request, "Your proposal has been submitted successfully.")
-            return redirect("assignments")  # Redirect to My Assignments page
+            return redirect("assignments")
     else:
+        # Pass the original assignment instance to the form for rendering
         form = AssignmentEditForm(instance=assignment)
+
     return render(request, "assignment/propose_edit.html", {"form": form})
 
 
@@ -140,6 +142,7 @@ def approve_changes(request, assignment_id):
         assignment.approve_changes(request.user)
         messages.success(request, "Request approved successfully.")
         return redirect("all_assignments")
+
     proposed_changes = assignment.pending_changes or {}
     changes = [
         {
