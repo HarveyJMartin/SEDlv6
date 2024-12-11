@@ -23,6 +23,7 @@ django-environ = "*"
 crispy-bootstrap5 = "*"
 black = "*"
 bandit = "*"
+safety = "*"
 
 [dev-packages]
 
