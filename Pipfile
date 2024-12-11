@@ -24,6 +24,7 @@ crispy-bootstrap5 = "*"
 black = "*"
 bandit = "*"
 safety = "*"
+flake8 = "*"
 
 [dev-packages]
 

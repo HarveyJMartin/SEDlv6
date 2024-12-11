@@ -93,7 +93,6 @@ class AllAssignmentsViewTest(TestCase):
     def test_all_assignments_inaccessible_to_non_staff(self):
         """Non-staff user should get 403 when trying to access."""
         self.client.logout()
-        normal_user = User.objects.create_user(username="normal", password="password")
         self.client.login(username="normal", password="password")
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 403)
