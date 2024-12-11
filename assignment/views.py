@@ -1,18 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
 from .models import Assignment
 from .forms import AssignmentEditForm, AssignmentForm
-from django.contrib.auth.decorators import user_passes_test
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib import messages
+from core.views import is_staff_user
 
 
-def is_staff_user(user):
-    if not user.is_staff:
-        raise PermissionDenied  # Raises a 403 Forbidden response
-    return True
-
-
+@login_required
 @user_passes_test(is_staff_user)
 def assign_device(request):
     if request.method == "POST":
@@ -25,6 +19,7 @@ def assign_device(request):
     return render(request, "assignment/new_assignment.html", {"form": form})
 
 
+@login_required
 @user_passes_test(is_staff_user)
 def delete_assignment(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
@@ -35,6 +30,7 @@ def delete_assignment(request, assignment_id):
     return render(request, "assignment/confirm_delete.html", {"assignment": assignment})
 
 
+@login_required
 def requested_changes(request):
     edit_requests = Assignment.objects.filter(pending_changes__isnull=False)
     delete_requests = Assignment.objects.filter(status="deletion_requested")
@@ -48,6 +44,7 @@ def requested_changes(request):
     )
 
 
+@login_required
 @user_passes_test(is_staff_user)
 def all_assignments(request):
     # Fetch all assignments regardless of status or changes
@@ -57,6 +54,7 @@ def all_assignments(request):
     )
 
 
+@login_required
 @user_passes_test(is_staff_user)
 def edit_assignment(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
@@ -74,6 +72,7 @@ def edit_assignment(request, assignment_id):
     )
 
 
+@login_required
 def user_assignments(request):
     if not request.user.is_authenticated:
         return redirect("login")
@@ -86,6 +85,7 @@ def user_assignments(request):
     )
 
 
+@login_required
 def propose_edit(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
 
@@ -112,6 +112,7 @@ def propose_edit(request, assignment_id):
     return render(request, "assignment/propose_edit.html", {"form": form})
 
 
+@login_required
 def request_deletion(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
 
@@ -135,6 +136,7 @@ def request_deletion(request, assignment_id):
     )
 
 
+@login_required
 @user_passes_test(is_staff_user)
 def approve_changes(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
@@ -162,6 +164,7 @@ def approve_changes(request, assignment_id):
     )
 
 
+@login_required
 @user_passes_test(is_staff_user)
 def reject_changes(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
