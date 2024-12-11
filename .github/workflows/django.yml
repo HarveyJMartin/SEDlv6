@@ -38,10 +38,16 @@ jobs:
       run: |
         safety check --full-report
 
+    #Formatting
     - name: Black Check
         # This will fail the pipeline if black formatting checks fail
       run: |
         black --check --diff .
+
+    # Linting
+    - name: Run Flake8
+      run: |
+        flake8 .
     - name: Run Tests
       env:
         USE_SQLITE: true
