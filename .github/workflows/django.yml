@@ -33,6 +33,11 @@ jobs:
       run: |
         bandit -r . --exclude '**/tests.py'
 
+    # Safety checks for vulnerabilities in dependencies.
+    - name: Run Safety
+      run: |
+        safety check --full-report
+
     - name: Black Check
         # This will fail the pipeline if black formatting checks fail
       run: |
