@@ -92,7 +92,8 @@ def propose_edit(request, assignment_id):
     if assignment.pending_changes:
         messages.error(
             request,
-            "This assignment already has pending changes. Please wait for the current request to be resolved.",
+            "This assignment already has pending changes."
+            + "Please wait for the current request to be resolved.",
         )
         return redirect("assignments")
 
