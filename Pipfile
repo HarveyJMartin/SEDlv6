@@ -25,6 +25,7 @@ black = "*"
 bandit = "*"
 safety = "*"
 flake8 = "*"
+coverage = "*"
 
 [dev-packages]
 

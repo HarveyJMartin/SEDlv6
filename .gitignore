@@ -1,3 +1,7 @@
 uni/
 
 .env
+
+.coverage
+htmlcov/
+coverage.xml
