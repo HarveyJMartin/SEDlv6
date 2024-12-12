@@ -48,8 +48,11 @@ jobs:
     - name: Run Flake8
       run: |
         flake8 .
-    - name: Run Tests
+    - name: Run Tests with coverage 
       env:
         USE_SQLITE: true
       run: |
-        python manage.py test
+        coverage run manage.py test
+        coverage report
+        coverage xml
+
