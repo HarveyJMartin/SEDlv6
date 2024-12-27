@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-  name: Build and Test Django Project
 
     runs-on: ubuntu-latest
     env:
