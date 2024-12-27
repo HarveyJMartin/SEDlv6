@@ -29,26 +29,26 @@ jobs:
         pip install -r requirements.txt
 
     # Bandit checks for security issues in code, excluding test files as test objects were flagging password issues.
-    - name: Run Bandit (Security Check)
+    - name: Run Bandit (Code security check)
       run: |
         bandit -r . --exclude '**/tests.py'
 
     # Safety checks for vulnerabilities in dependencies.
-    - name: Run Safety
+    - name: Run Safety (Dependency vulnerability scanning)
       run: |
         safety check --full-report
 
     #Formatting
-    - name: Black Check
+    - name: Black Check (Code formatting)
         # This will fail the pipeline if black formatting checks fail
       run: |
         black --check --diff .
 
     # Linting
-    - name: Run Flake8
+    - name: Run Flake8 (linting and style enforcement)
       run: |
         flake8 .
-    - name: Run Tests with coverage 
+    - name: Run Tests with coverage (Using coverage package)
       env:
         USE_SQLITE: true
       run: |
