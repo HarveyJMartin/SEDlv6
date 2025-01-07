@@ -45,8 +45,9 @@
                         </form>
                     </li>
                     {% else %}
-                    <li class="nav-item" style="list-style: none;">
+                    <li class="nav-item" style="list-style: none; display: flex; gap: 10px;">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="/sign-up">Sign Up</a>
                     </li>
                     {% endif %}
                 </ul>

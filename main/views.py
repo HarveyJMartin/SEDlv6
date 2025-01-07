@@ -4,9 +4,13 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/landing")
 def home(request):
     return render(request, "main/home.html")
+
+
+def landing(request):
+    return render(request, "main/landing.html")
 
 
 def sign_up(request):

@@ -1,5 +1,10 @@
 {% extends 'main/base.html' %}
 {% block title %} Home Page{% endblock %}
 {% block content %}
-<h1>Home Page!</h1>
+{% if request.user.is_authenticated %}
+  <h1 style="text-align: center; margin-top: 50px;">Hello, {{ request.user.username }}! Welcome to the device management app.</h1>
+  <p style="text-align: center;">Please choose an option above to continue.</p>
+{% else %}
+  <p style="text-align: center;">Please log in to access the app.</p>
+{% endif %}
 {% endblock %}
