@@ -28,7 +28,7 @@ environ.Env.read_env(env_file=BASE_DIR / ".env")
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -156,4 +156,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 LOGIN_REDIRECT_URL = "/home"
-LOGOUT_REDIRECT_URL = "/login"
+LOGOUT_REDIRECT_URL = "/landing"
