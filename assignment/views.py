@@ -127,7 +127,7 @@ def request_deletion(request, assignment_id):
 
     if request.method == "POST":
         reason = request.POST.get("reason")
-        assignment.request_deletion(request.user, reason)
+        assignment.request_deletion(reason)
         messages.success(
             request, "Your deletion request has been submitted successfully."
         )
